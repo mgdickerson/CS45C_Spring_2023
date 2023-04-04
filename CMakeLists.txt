@@ -50,7 +50,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS ${COMPILE_FLAGS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 # This is for linking pre-build library files such as pthread.
-target_link_libraries(${PROJECT_NAME} pthread)
+target_link_libraries(${PROJECT_NAME} pthread m)
 
 # This is for optionally building GTest suites. If GTest
 # is installed on your system and it can be found on your
@@ -60,17 +60,33 @@ target_link_libraries(${PROJECT_NAME} pthread)
 # for this to build.
 find_package(GTest)
 if (GTest_FOUND)
-  project(gtest)
+  # GTest Project for convert_knots
+  project(knot_gtest)
 
   # If you add other test files, be sure to add them to
   # this list!
   set(GTEST_FILES
     gtest/gtestmain.cpp
-    gtest/tests.cpp
+    gtest/knot_tests.cpp
     )
 
   include_directories(${GTEST_INCLUDE_DIRS})
   add_executable(${PROJECT_NAME} ${SRC_FILES_EXCEPT_MAIN} ${GTEST_FILES})
   target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/gtest)
-  target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} pthread)
+  target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} pthread m)
+
+  # GTest Project for stack
+  project(stack_gtest)
+
+  # If you add other test files, be sure to add them to
+  # this list!
+  set(GTEST_FILES
+    gtest/gtestmain.cpp
+    gtest/stack_tests.cpp
+    )
+
+  include_directories(${GTEST_INCLUDE_DIRS})
+  add_executable(${PROJECT_NAME} ${SRC_FILES_EXCEPT_MAIN} ${GTEST_FILES})
+  target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/gtest)
+  target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} pthread m)
 endif()

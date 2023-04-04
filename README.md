@@ -163,9 +163,9 @@ When you have finished making your conversion function, you will need to leave `
 the `Esc` key as you did above, and then `write` and `quit` using either `:wq` or `:x` and pressing `Enter`
 just as you did before (NOTE : If you just want to write changes without quitting, you can use just `:w`).
 Now that you have written a converter, you need to test it! To do this, you can follow either the
-`Knots GTest` or the `Knots Main` instructions below.
+[Knots GTest](#knots-gtest:) or the [Knots Main](#knots-main:) instructions below.
 
-#### Knots GTest
+#### Knots GTest:
 
 To add a test, you will need to modify the file `gtest/knot_tests.cpp`:
 
@@ -226,7 +226,7 @@ your function and the number provided are equal. You can either jump to
 [Build Instructions](#build-instructions) to test this, or you can continue on to writing
 the `stack.h`.
 
-#### Knots Main
+#### Knots Main:
 
 If you are not using `GTest`, you can instead write your own tests using the `main.cpp` file
 we created above. You will need to modify the file, so first lets open the file with your

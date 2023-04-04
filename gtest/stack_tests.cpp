@@ -13,11 +13,27 @@
 
 namespace {
 
-TEST(Stack, PushPop) {
-  // Compares two "strings" or `char *` for equality.
+TEST(Stack, PushPopEQ) {
+  // Push 'c' on the stack, and make sure we get 'c' back.
   Stack st;
-  st.push('c')
-  EXPECT_STREQ('c', st.pop());
+  st.push('c');
+  EXPECT_EQ('c', st.pop());
+}
+
+TEST(Stack, PushPopNE) {
+  // Push 'c' on the stack, make sure we dont get 'd' back.
+  Stack st;
+  st.push('c');
+  EXPECT_NE('d', st.pop());
+}
+
+TEST(Stack, Empty) {
+  Stack st;
+  EXPECT_TRUE(st.isEmpty());
+  st.push('c');
+  EXPECT_FALSE(st.isEmpty());
+  st.pop();
+  EXPECT_TRUE(st.isEmpty());
 }
 
 // ADD YOUR TESTS HERE:

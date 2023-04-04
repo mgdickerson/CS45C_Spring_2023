@@ -13,6 +13,26 @@ knot_tests.cpp
 stack_tests.cpp
 ```
 
+### TLDR Build And Run:
+
+```bash
+# Target Build Command
+cmake --build build   # Will build all of the `targets` described in the `CMake` file
+
+# Build only main.cpp:
+cmake --build build --target hw
+
+# Build only Knot tests:
+cmake --build build --target knot_gtest
+
+# Build only Stack tests:
+cmake --build build --target stack_gtest
+
+./build/hw            # Runs the `main` function from src/main.cpp
+./build/knot_gtest    # Runs the 'knot' gtest set of tests
+./build/stack_gtest   # Runs the `Stack` gtests
+```
+
 ## Getting Started
 
 If you are using `GitHub`, then getting started is easy! You will clone this repository, then

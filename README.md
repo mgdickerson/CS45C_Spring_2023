@@ -163,7 +163,7 @@ When you have finished making your conversion function, you will need to leave `
 the `Esc` key as you did above, and then `write` and `quit` using either `:wq` or `:x` and pressing `Enter`
 just as you did before (NOTE : If you just want to write changes without quitting, you can use just `:w`).
 Now that you have written a converter, you need to test it! To do this, you can follow either the
-[Knots GTest](#knots-gtest:) or the [Knots Main](#knots-main:) instructions below.
+[Knots GTest](#knots-gtest) or the [Knots Main](#knots-main) instructions below.
 
 #### Knots GTest:
 
@@ -273,7 +273,7 @@ Knots(2) = 0.0383593
 It is OK if the output is not that exact number, so long as it is accurate within 2
 decimal places.
 
-### Stack
+### Stack:
 
 Once we have finished writing and testing `convert_knots.h`, we will make our `stack`! You will need
 to modify or create the file `src/stack.h`. Your implemention of a stack will hold up to 1000 characters,

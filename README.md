@@ -16,6 +16,9 @@ stack_tests.cpp
 ### TLDR Build And Run:
 
 ```bash
+# Run CMake defaults and Build Generator commands
+cmake --preset default
+
 # Target Build Command
 cmake --build build   # Will build all of the `targets` described in the `CMake` file
 
@@ -84,6 +87,7 @@ named `hw1` with the following structure:
 
 ```bash
 ├── CMakeLists.txt
+├── CMakePresets.txt
 ├── gtest
 │   ├── gtestmain.cpp
 │   ├── knot_tests.cpp
@@ -94,9 +98,10 @@ named `hw1` with the following structure:
     └── stack.h
 ```
 
-You should copy everything from the CMakeLists.txt file into your own, as well as the files `gtestmain.cpp`
-and `tests.cpp`. This will allow you to build and run the tests for this assignment. If you do not
-follow this structure, you will not be able to use the `CMakeLists.txt` file as provided!
+You should copy everything from the `CMakeLists.txt` and `CMakePresets.json` files into your own,
+as well as the files `gtestmain.cpp` and `tests.cpp`. This will allow you to build and run the
+tests for this assignment. If you do not follow this structure, you will not be able to use the
+`CMakeLists.txt` file as provided!
 
 ## Coding
 
@@ -333,7 +338,7 @@ To produce the build files for our project we run the first command:
 
 ```bash
 # Build Generator Command
-cmake -B build        # Create a folder named `build` and run `CMake` to produce build files there
+cmake --preset deafult # Create a folder named `build` and run `CMake` to produce build files there
 ```
 
 This command needs to be run at least once. Once it has been run, you will not need to run it again
@@ -369,7 +374,7 @@ cmake --build build --target stack_gtest
 NOTE: If you build all targets with the `cmake --build build` command, you DO NOT need to
 run the individual commands. The advantage of running the individual build commands is
 being able to build only the parts you want to test. Also, unlike the Build Generator 
-Command (`cmake -B build`), you will need to run the Target Build Command 
+Command (`cmake --preset default`), you will need to run the Target Build Command 
 (`cmake --build build <--target target>`) every time you make changes to your `*.cpp` or `*.h`
 files. For example, if you build `knot_tests.cpp`, and find out that your conversion does
 not work for numbers above `10`, you will need to change `convert_knots.h`. Once you have

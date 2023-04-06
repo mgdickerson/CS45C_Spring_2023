@@ -7,10 +7,12 @@ This repository will focus on instructions relevant to HW1. In this assignment, 
 main.cpp
 convert_knots.h
 stack.h
+letter_count.h
 
 # If using GTest:
-knot_tests.cpp
-stack_tests.cpp
+knot_gtests.cpp
+stack_gtests.cpp
+count_gtests.cpp
 ```
 
 ### TLDR Build And Run:
@@ -26,14 +28,18 @@ cmake --build build   # Will build all of the `targets` described in the `CMake`
 cmake --build build --target hw
 
 # Build only Knot tests:
-cmake --build build --target knot_gtest
+cmake --build build --target knot_gtests
 
 # Build only Stack tests:
-cmake --build build --target stack_gtest
+cmake --build build --target stack_gtests
 
-./build/hw            # Runs the `main` function from src/main.cpp
-./build/knot_gtest    # Runs the 'knot' gtest set of tests
-./build/stack_gtest   # Runs the `Stack` gtests
+# Build only the Letter Count tests:
+cmake --build build --target count_gtests
+
+./build/hw            # Runs the 'main' function from src/main.cpp
+./build/knot_gtests   # Runs the 'knot' gtest set of tests
+./build/stack_gtests  # Runs the 'Stack' gtests
+./build/count_gtests  # Runs the 'Letter Count' gtests
 ```
 
 ## Getting Started
@@ -57,14 +63,14 @@ the image below:
 And then in the terminal, type:
 
 ```bash
-git clone <LinkCopiedAbove>  # For example: git clone git@github.com:klefstad/CS45C-Template.git 
+git clone <LinkCopiedAbove>  # For example: git clone git@github.com:klefstad/CS45C.git 
 ```
 
-There should now be a folder named `CS45C-Template`. We will move into that directory using the
+There should now be a folder named `CS45C`. We will move into that directory using the
 command:
 
 ```bash
-cd CS45C-Template
+cd CS45C
 ```
 
 Once inside the directory, we will `checkout` the `hw1` branch!
@@ -90,25 +96,31 @@ named `hw1` with the following structure:
 ├── CMakePresets.txt
 ├── gtest
 │   ├── gtestmain.cpp
-│   ├── knot_tests.cpp
-│   └── stack_tests.cpp
+│   └── count_gtests.cpp
+│   ├── knot_gtests.cpp
+│   └── stack_gtests.cpp
 └── src
     ├── convert_knots.h
+    ├── letter_count.h
     ├── main.cpp
     └── stack.h
 ```
 
 You should copy everything from the `CMakeLists.txt` and `CMakePresets.json` files into your own,
-as well as the files `gtestmain.cpp` and `tests.cpp`. This will allow you to build and run the
+as well as the files `gtestmain.cpp` and the individual `gtests`. This will allow you to build and run the
 tests for this assignment. If you do not follow this structure, you will not be able to use the
 `CMakeLists.txt` file as provided!
 
 ## Coding
 
-In this assignment, we will be making a [knots converter](#convert-knots) as well as a [stack](#stack). First,
-as in `hw0`, we will be making a basic `main` function in `src/main.cpp`. Open the terminal on your
-system of choice (or `ssh` into OpenLab), and use either `vim` or `neovim` to modify our `main.cpp`
-file:
+Starting from `hw1`, the details of the assignment itself will be covered in the homework documents
+not on this `GitHub` page. For reference and example, we will include instructions for making your
+`main.cpp` and `convert_knots.h` file to show how to test with either `GTest` or manually with your
+`main` function.
+
+First, as in `hw0`, we will be making a basic `main` function in `src/main.cpp`. Open the terminal
+on your system of choice (or `ssh` into OpenLab), and use either `vim` or `neovim` to modify our
+`main.cpp` file:
 
 ```bash
 vim src/main.cpp
@@ -172,13 +184,13 @@ Now that you have written a converter, you need to test it! To do this, you can 
 
 #### Knots GTest:
 
-To add a test, you will need to modify the file `gtest/knot_tests.cpp`:
+To add a test, you will need to modify the file `gtest/knot_gtests.cpp`:
 
 ```bash
-vim gtest/knot_tests.cpp
+vim gtest/knot_gtests.cpp
 
 # Or Neovim
-nvim gtest/knot_tests.cpp
+nvim gtest/knot_gtests.cpp
 ```
 
 The file should already contain the following:
@@ -276,52 +288,9 @@ Knots(2) = 0.0383593
 ```
 
 It is OK if the output is not that exact number, so long as it is accurate within 2
-decimal places.
-
-### Stack:
-
-Once we have finished writing and testing `convert_knots.h`, we will make our `stack`! You will need
-to modify or create the file `src/stack.h`. Your implemention of a stack will hold up to 1000 characters,
-using an array of 1000 `char`. Use the member functions given in the class definition below
-(a constructor, push, pop, top, isEmpty, isFull, and destructor which does nothing for this assignment):
-
-```cpp
-#define STACK_CAPACITY 1000
-class Stack {
-public:
-  Stack();            // Constructor for a Stack
-  void push(char c);  // Adds c to the top of the Stack
-  char pop();         // Removes top element, returns it
-  char top();         // Returns top element without removing it
-  bool isEmpty();     // Returns true iff the Stack is empty
-  bool isFull();      // Returns true iff the Stack is full
-  ~Stack() {}         // Destructor for the Stack, this is done as it does nothing
-};
-```
-
-Above is a class definition listing those functions. By replacing the semicolons in the class definition
-with the body of each of these methods, you will convert the class declaration to a class definition.
-
-```cpp
-// Example:
-void push(char c);
-
-// Would become:
-void push(char c) {
-  // Do something here...
-}
-```
-
-Be sure to do reasonable error checking. `push()` must only add the character to the stack if the stack
-is not full. `pop()` and `top()` will only return the top character if the stack is not empty. `top()` or `pop()`
-on an empty stack should return `@` the at sign character. You can also print an error messages, but these
-will be ignored by the autograder and you do not need to print an error messages.
-
-To ensure that your `Stack` works as you expect it to, you can add tests for it using either `GTest`
-with the `gtest/stack_tests.cpp` file or your `main.cpp` file exactly the same way as you did with
-[Convert Knots](#convert-knots). For examples of how to test your `Stack`, refer to the tests already
-in `gtest/stack_tests.cpp`. Once you have sufficiently added tests for your `Stack`, move on to the
-[Build Instructions](#build-instructions)!
+decimal places. When you feel that you have successfully implemented the `knots converter`,
+you can either check the `HW1` document for the remaining assignment problems, or move on to
+[Build Instructions](#build-instructions) to test your new `converter`!
 
 ## Build Instructions
 
@@ -354,8 +323,8 @@ cmake --build build   # Will build all of the `targets` described in the `CMake`
 ```
 
 Or you can pick a specific target to build. For this homework, there are 3 possible `targets`:
-`hw` (which is the `main.cpp` file you created above), `knot_gtest` (`knot_tests.cpp`), and
-`stack_gtest` (`stack_tests.cpp`). These `targets` are defined in the `CMakeLists.txt` file
+`hw` (which is the `main.cpp` file you created above), `knot_gtests` (`knot_gtests.cpp`), and
+`stack_gtests` (`stack_gtests.cpp`). These `targets` are defined in the `CMakeLists.txt` file
 as `project(<name>)`, so if you want to find the `targets` yourself, you can always check that
 file. We will also always give you the available `targets` in this class. Below are the individual
 `target` commands you can run:
@@ -365,10 +334,13 @@ file. We will also always give you the available `targets` in this class. Below 
 cmake --build build --target hw
 
 # Build only Knot tests:
-cmake --build build --target knot_gtest
+cmake --build build --target knot_gtests
 
 # Build only Stack tests:
-cmake --build build --target stack_gtest
+cmake --build build --target stack_gtests
+
+# Build only the Letter Count tests:
+cmake --build build --target count_gtests
 ```
 
 NOTE: If you build all targets with the `cmake --build build` command, you DO NOT need to
@@ -376,25 +348,26 @@ run the individual commands. The advantage of running the individual build comma
 being able to build only the parts you want to test. Also, unlike the Build Generator 
 Command (`cmake --preset default`), you will need to run the Target Build Command 
 (`cmake --build build <--target target>`) every time you make changes to your `*.cpp` or `*.h`
-files. For example, if you build `knot_tests.cpp`, and find out that your conversion does
+files. For example, if you build `knot_gtests.cpp`, and find out that your conversion does
 not work for numbers above `10`, you will need to change `convert_knots.h`. Once you have
 changed it, when you want to test it again, you can run:
 
 ```bash
-cmake --build build --target knot_gtest
+cmake --build build --target knot_gtests
 ```
 
 And it will build just that code with your updated changes! Very handy for testing one task
 at a time.
 
 After you have built your intended target, you will have three new executables you can run!
-You will have `hw` which will be the code from `main.cpp`, `knot_gtest`, and `stack_gtest`.
+You will have `hw` which will be the code from `main.cpp`, `knot_gtests`, and `stack_gtests`.
 You can run each one with the commands shown below:
 
 ```bash
-./build/hw            # Runs the `main` function from src/main.cpp
-./build/knot_gtest    # Runs the 'knot' gtest set of tests
-./build/stack_gtest   # Runs the `Stack` gtests
+./build/hw            # Runs the 'main' function from src/main.cpp
+./build/knot_gtests   # Runs the 'knot' gtest set of tests
+./build/stack_gtests  # Runs the 'Stack' gtests
+./build/count_gtests  # Runs the 'Letter Count' gtests
 ```
 
 Once you have run the code above and it either produces the output you expected or passes
@@ -434,6 +407,6 @@ On `Gradescope`, press the `submit` button and it will bring up the following wi
 
 ![](docs/submit_files.png)
 
-Then you will drag and drop the `main.cpp`, `convert_knots.h`, and `stack.h` files from your `src` folder
+Then you will drag and drop the `main.cpp`, `convert_knots.h`, `letter_count.h`, and `stack.h` files from your `src` folder
 (or wherever you have made this file) and press upload. As these are the only files we are changing, they
 should be the only files that you upload!

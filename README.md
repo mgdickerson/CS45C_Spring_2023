@@ -207,17 +207,11 @@ The file should already contain the following:
 #include "convert_knots.h"
 
 #include <gtest/gtest.h>
-#include <cmath>
 
 namespace {
 
-/// Test the equality of two doubles within the precision of 0.01 (or two decimal places)
-bool compare_eq(double v1, double v2) {
-  return std::abs(v1 - v2) < std::pow(10, -2);
-}
-
 TEST(ConvertKnots, Two) {
-  EXPECT_TRUE(compare_eq(0.0383593, knots_to_miles_per_minute(2)));
+  EXPECT_NEAR(0.0383593, knots_to_miles_per_minute(2), 0.01);
 }
 
 // ADD YOUR TESTS HERE:
@@ -234,7 +228,7 @@ but just to be sure, lets add another test. This time, we want to test that our 
 
 ```cpp
 TEST(ConvertKnots, Three) {
-  EXPECT_TRUE(compare_eq(0.057539, knots_to_miles_per_minute(3)));
+  EXPECT_NEAR(0.057539, knots_to_miles_per_minute(3), 0.01);
 }
 ```
 

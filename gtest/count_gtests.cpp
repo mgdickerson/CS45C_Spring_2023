@@ -15,7 +15,7 @@ namespace {
 
 TEST(Count, SimpleString) {
   // Push 'c' on the stack, and make sure we get 'c' back.
-  std::string ts = "abcdef";
+  std::string ts = "ABCDEF";
   int char_counts[26] = { 0 };
   count(ts.c_str(), char_counts);
   for (int i = 0; i < 6; ++i) {

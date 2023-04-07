@@ -15,16 +15,22 @@ stack_gtests.cpp
 count_gtests.cpp
 ```
 
-WARNING: As a heads up, you will likely need to do the following to make this accessible and then
-link it to your personal repo (this assumes you have followed the steps under the main branch):
+To add this branch to your private repository, you can run the following steps inside your `private`
+repository folder:
 
 ```bash
-# Pull changes from the `public` repository
+# Grab any and all changes from the `public` repository we setup in the `main` branch instructions
 git fetch public
 
-# Push this branch to "MY" repository and "link" it to push to my branch instead of public
+# Check out the hw1 branch
+git checkout hw1
+
+# Add the `hw1` branch to your private repository on GitHub
 git push -u origin hw1
 ```
+
+After running these commands, you will have a copy of the public `hw1` branch on your private repository
+and can make changes and push changes as you normally would.
 
 ### TLDR Build And Run:
 

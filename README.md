@@ -15,6 +15,17 @@ stack_gtests.cpp
 count_gtests.cpp
 ```
 
+WARNING: As a heads up, you will likely need to do the following to make this accessible and then
+link it to your personal repo (this assumes you have followed the steps under the main branch):
+
+```bash
+# Pull changes from the `public` repository
+git fetch public
+
+# Push this branch to "MY" repository and "link" it to push to my branch instead of public
+git push -u origin hw1
+```
+
 ### TLDR Build And Run:
 
 ```bash

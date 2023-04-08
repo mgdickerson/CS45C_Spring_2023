@@ -301,11 +301,9 @@ To produce the build files for our project we run the first command:
 cmake --preset deafult # Create a folder named `build` and run `CMake` to produce build files there
 ```
 
-This command needs to be run at least once. Once it has been run, you will not need to run it again
-unless you add new files that were not previously added to the project (or if you change the 
-`CMakeLists.txt` file). If you add files or change `CMakeLists.txt`, then you can simply re-run
-the command above and it will update the `build` files that it produced before. Once you have the
-`build` folder and files, you will want to build the actual program. This can be done two ways.
+This command needs to be run only once! Even if you change `CMakeLists.txt` or add new files, you will only
+need to run the `cmake --build build` command, and it will automatically regenerate the build files for you.
+Once you have the `build` folder and files, you will want to build the actual program. This can be done two ways.
 You can either build everything at once:
 
 ```bash

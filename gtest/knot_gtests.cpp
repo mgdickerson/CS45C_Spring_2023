@@ -7,6 +7,7 @@
 
 #include <gtest/gtest.h>
 
+#include <iostream>
 using namespace std;
 // Include all of your *.h files you want to unit test:
 #include "convert_knots.h"

@@ -8,6 +8,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
+#include <iostream>
 using namespace std;
 // Include all of your *.h files you want to unit test:
 #include "letter_count.h"

@@ -6,9 +6,9 @@
 // -------------------------------------------------------------------------- //
 
 #include <gtest/gtest.h>
-#include <cmath>
 #include <string>
 
+#include <iostream>
 using namespace std;
 // Include all of your *.h files you want to unit test:
 #include "stack.h"

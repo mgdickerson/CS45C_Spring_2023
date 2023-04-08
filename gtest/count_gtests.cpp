@@ -5,11 +5,12 @@
 // https://github.com/google/googletest/blob/main/docs/primer.md
 // -------------------------------------------------------------------------- //
 
-// Include all of your *.h files you want to unit test:
-#include "letter_count.h"
-
 #include <gtest/gtest.h>
 #include <string>
+
+using namespace std;
+// Include all of your *.h files you want to unit test:
+#include "letter_count.h"
 
 namespace {
 
@@ -17,7 +18,7 @@ TEST(Count, SimpleString) {
   // Push 'c' on the stack, and make sure we get 'c' back.
   std::string ts = "ABCDEF";
   int char_counts[26] = { 0 };
-  count(ts.c_str(), char_counts);
+  count(ts, char_counts);
   for (int i = 0; i < 6; ++i) {
     EXPECT_EQ(1, char_counts[i]);
   }

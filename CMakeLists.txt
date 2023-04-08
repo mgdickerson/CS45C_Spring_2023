@@ -16,27 +16,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # good to have.
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# This will contain the list of all *.cpp and *.h files you make
-# for the project. Make sure that you add the files to
-# CMakeLists.txt when you add it to your src folder or it
-# will not compile!
-# NOTE: *.h files are not strictly necessary to be added for most
-# build systems but it is considered best practice for
-# portability (e.g. for IDEs like Visual Studio).
-# WARNING: DO NOT INCLUDE MAIN! We will add the main.cpp
-# file in the executable command.
-set(SRC_FILES_EXCEPT_MAIN
-  src/stack.h
+# Add knots main executable
+set(KNOT_SRC_FILES
   src/convert_knots.h
+  src/convert_knots.cpp
 )
+project(knot CXX)
+add_executable(${PROJECT_NAME} ${KNOT_SRC_FILES})
 
-# Set up a project with a name and C++ as the language:
-project(hw CXX)
+# Add stack main executable
+set(STACK_SRC_FILES
+  src/stack.h
+  src/stack.cpp
+)
+project(stack CXX)
+add_executable(${PROJECT_NAME} ${STACK_SRC_FILES})
 
-# Adds an executable target that will be built by gcc/g++,
-# the name being the same as the project name (hw in this
-# example).
-add_executable(${PROJECT_NAME} ${SRC_FILES_EXCEPT_MAIN} src/main.cpp)
+# Add letter_count main executable
+set(COUNT_SRC_FILES
+  src/letter_count.h
+  src/letter_count.cpp
+)
+project(count CXX)
+add_executable(${PROJECT_NAME} ${COUNT_SRC_FILES})
 
 # This is for optionally building GTest suites. If GTest
 # is installed on your system and it can be found on your

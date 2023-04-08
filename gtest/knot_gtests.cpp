@@ -5,10 +5,11 @@
 // https://github.com/google/googletest/blob/main/docs/primer.md
 // -------------------------------------------------------------------------- //
 
+#include <gtest/gtest.h>
+
+using namespace std;
 // Include all of your *.h files you want to unit test:
 #include "convert_knots.h"
-
-#include <gtest/gtest.h>
 
 namespace {
 

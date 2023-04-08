@@ -4,10 +4,14 @@ Welcome to ICS 45C Homework 1! For more general instructions, please reference t
 This repository will focus on instructions relevant to HW1. In this assignment, you will be modifying:
 
 ```bash
-main.cpp
 convert_knots.h
+convert_knots.cpp
+
 stack.h
+stack.cpp
+
 letter_count.h
+letter_count.cpp
 
 # If using GTest:
 knot_gtests.cpp
@@ -15,45 +19,48 @@ stack_gtests.cpp
 count_gtests.cpp
 ```
 
-To add this branch to your private repository, you can run the following steps inside your `private`
-repository folder:
-
-```bash
-# Grab any and all changes from the `public` repository we setup in the `main` branch instructions
-git fetch public
-
-# Check out the hw1 branch
-git checkout hw1
-
-# Add the `hw1` branch to your private repository on GitHub
-git push -u origin hw1
-```
-
-After running these commands, you will have a copy of the public `hw1` branch on your private repository
-and can make changes and push changes as you normally would.
+To add this branch to your private repository, follow the instructions under the
+[Getting Started](#getting-started) section.
 
 ### TLDR Build And Run:
 
 ```bash
+# Pull updates:
+git fetch public
+
+# Checkout hw1:
+git checkout hw1
+
+# Push to origin:
+git push -u origin hw1
+
 # Run CMake defaults and Build Generator commands
 cmake --preset default
 
 # Target Build Command
 cmake --build build   # Will build all of the `targets` described in the `CMake` file
 
-# Build only main.cpp:
-cmake --build build --target hw
+# Build only convert_knots.cpp:
+cmake --build build --target knot
 
 # Build only Knot tests:
 cmake --build build --target knot_gtests
 
+# Build only stack.cpp:
+cmake --build build --target stack
+
 # Build only Stack tests:
 cmake --build build --target stack_gtests
+
+# Build only letter_count.cpp:
+cmake --build build --target count
 
 # Build only the Letter Count tests:
 cmake --build build --target count_gtests
 
-./build/hw            # Runs the 'main' function from src/main.cpp
+./build/knot          # Runs the 'main' function from src/convert_knots.cpp
+./build/stack         # Runs the 'main' function from src/stack.cpp
+./build/count         # Runs the 'main' function from src/letter_count.cpp
 ./build/knot_gtests   # Runs the 'knot' gtest set of tests
 ./build/stack_gtests  # Runs the 'Stack' gtests
 ./build/count_gtests  # Runs the 'Letter Count' gtests
@@ -61,46 +68,72 @@ cmake --build build --target count_gtests
 
 ## Getting Started
 
-If you are using `GitHub`, then getting started is easy! You will clone this repository, then
-checkout the `hw1` branch! If you have already `cloned` this project, then you can skip to
-the [Checkout](#checkout) instructions. If you plan to not use `GitHub` and still want to use
-our provided tests, follow the instructions under [Directory Structure](#directory-structure).
-If you want to manually make the individual files and not use our tests, then you can simply
-make a `main.cpp` file and skip ahead to the [Coding](#coding) section.
-
-### Clone
-
-On `Linux` and `Mac`, you can open a new terminal. On Windows you will open `Git BASH` which
-should have been installed following the instructions under the `main` branch. On OpenLab,
-you are already in a terminal! Next, you will want to copy the repository link as shown in
-the image below:
-
-![](docs/clone_link.png)
-
-And then in the terminal, type:
+If you are using `GitHub`, then it is likely you will have already cloned this repository!
+If you have not, or removed the folder for any reason, then you will need to clone your
+private repository first:
 
 ```bash
-git clone <LinkCopiedAbove>  # For example: git clone git@github.com:klefstad/CS45C.git 
+# Clone your private repository
+git clone <YourPrivateRepositorySSHLink>
+
+# Change Directory into your project folder
+cd <PrivateProjectName>
 ```
 
-There should now be a folder named `CS45C`. We will move into that directory using the
-command:
+Next, you will need to pull any changes and updates, so we are going to run a `fetch` command:
 
 ```bash
-cd CS45C
+# Check that you have the `public` remote setup (it should list an `origin` and a `public`):
+git remote -v
+
+# If you do not find a `public` option on the above command, you will need to add it:
+git remote add public https://github.com/mgdickerson/CS45C_Spring_2023.git
+
+# Once you are sure that you have the remote tracking set up, you can run the fetch command:
+git fetch public
 ```
 
-Once inside the directory, we will `checkout` the `hw1` branch!
+If you have set up the `remote` repository `public` to track this GitHub project, then you
+should now see that `git` has pulled all the necessary changes!
 
 ### Checkout
 
-In the same terminal as before, you will type:
+Next, we will checkout the `hw1` branch. In the same terminal as before, you will type:
 
 ```bash
 git checkout hw1
 ```
 
-You are now in the `hw1` branch! You can now make changes to your code as shown in the [Coding](#coding)
+You are now in the `hw1` branch! Now, we will want to add this branch to your private repository
+on `GitHub` and add tracking. To do this, we will run the command:
+
+```bash
+# Add the `hw1` branch to your private repository on GitHub
+git push -u origin hw1
+```
+
+The branch will now appear in your private repository on `GitHub.com`! This also sets up the
+branch to track with your private repository instead of the public one, so now simple push commands
+should send changes to the correct repository:
+
+```bash
+# Push changes to private repository
+git push
+```
+
+NOTE: AFTER you have done all the steps above, if you then clone this repository to a new folder or
+computer, it will now have multiple references to each `branch`. It is possible that when you run the
+`checkout` command, you will get an error such as: `multiple (2) remote tracking branches`. This happens
+because `git` is not sure which repository to pull it from, `origin` or `public`, so we will tell it
+which one to pull from, and set it to always prefer `origin` for this `branch`:
+
+```bash
+# Set the hw1 branch to track from "origin" (origin is your private repository)
+git checkout --track origin/hw1
+```
+
+This will checkout the `hw1` branch and set the preference for `origin`.
+You can now make changes to your code as shown in the [Coding](#coding)
 section below!
 
 ## Directory Structure
@@ -113,13 +146,15 @@ named `hw1` with the following structure:
 ├── CMakePresets.txt
 ├── gtest
 │   ├── gtestmain.cpp
-│   └── count_gtests.cpp
+│   ├── count_gtests.cpp
 │   ├── knot_gtests.cpp
 │   └── stack_gtests.cpp
 └── src
+    ├── convert_knots.cpp
     ├── convert_knots.h
+    ├── letter_count.cpp
     ├── letter_count.h
-    ├── main.cpp
+    ├── stack.cpp
     └── stack.h
 ```
 
@@ -132,41 +167,11 @@ tests for this assignment. If you do not follow this structure, you will not be 
 
 Starting from `hw1`, the details of the assignment itself will be covered in the homework documents
 not on this `GitHub` page. For reference and example, we will include instructions for making your
-`main.cpp` and `convert_knots.h` file to show how to test with either `GTest` or manually with your
-`main` function.
-
-First, as in `hw0`, we will be making a basic `main` function in `src/main.cpp`. Open the terminal
-on your system of choice (or `ssh` into OpenLab), and use either `vim` or `neovim` to modify our
-`main.cpp` file:
-
-```bash
-vim src/main.cpp
-
-# Or neovim:
-nvim src/main.cpp
-```
-
-Once you are in `vim`/`nvim`, you will enter `insert` mode by pressing `i`. Then type the following program
-and press `Esc` when you are done:
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-int main() {
-  cout << "Hello World!" << endl;
-  return 0;
-}
-```
-
-Once you have finished writing the `main` function,
-ensure that you have left `insert` mode by pressing `Esc`, then `write` and `quit` `vim` by typing either
-`:wq` or `:x` and then pressing the `Enter` key. This should close `vim`/`nvim` with your changes made.
+`convert_knots.h` file to show how to test with either `GTest`. All further instructions on the assignment
+objectives should be obtained from the related `hw` document.
 
 ### Convert Knots
 
-After you have finished making your `main.cpp` file, move on to making the `knots converter`.
 For the knots converter, you can modify (or create) the file `src/convert_knots.h` using either
 `vim` or `neovim` (it does not matter which you use, both will work).
 
@@ -177,8 +182,9 @@ vim src/convert_knots.h
 nvim src/convert_knots.h
 ```
 
-Now, you will need to add a function named `knots_to_miles_per_minute`
-that takes an `integer` named `knots` and returns a `double` value for `miles per minute`:
+Once you are in `vim`/`nvim`, you will enter `insert` mode by pressing `i`. Now, you will need to add a
+function named `knots_to_miles_per_minute` that takes an `integer` named `knots` and returns a `double`
+value for `miles per minute`:
 
 ```cpp
 double knots_to_miles_per_minute(int knots) {
@@ -194,10 +200,9 @@ For actually converting, you will need to write code to convert the input of `kn
 - 1 hour = 60 minutes
 
 When you have finished making your conversion function, you will need to leave `insert` mode by pressing
-the `Esc` key as you did above, and then `write` and `quit` using either `:wq` or `:x` and pressing `Enter`
-just as you did before (NOTE : If you just want to write changes without quitting, you can use just `:w`).
-Now that you have written a converter, you need to test it! To do this, you can follow either the
-[Knots GTest](#knots-gtest) or the [Knots Main](#knots-main) instructions below.
+the `Esc` key, and then `write` and `quit` using either `:wq` or `:x` and pressing `Enter`
+(NOTE : If you just want to write changes without quitting, you can use just `:w`).
+Now that you have written a converter, you need to test it!
 
 #### Knots GTest:
 
@@ -250,58 +255,8 @@ TEST(ConvertKnots, Three) {
 ```
 
 This will add a test to the `ConvertKnots` set named `Three` and test that the values of
-your function and the number provided are equal. You can either jump to
-[Build Instructions](#build-instructions) to test this, or you can continue on to writing
-the `stack.h`.
-
-#### Knots Main:
-
-If you are not using `GTest`, you can instead write your own tests using the `main.cpp` file
-we created above. You will need to modify the file, so first lets open the file with your
-preferred text editor:
-
-```bash
-nvim src/main.cpp
-```
-
-Now, we will need to `include` the file we just made (`convert_knots.h`). To do this,
-we will add a new `include` instruction under the one already in our `main.cpp`:
-
-```cpp
-#include <iostream>
-
-// Added convert_knots.h here:
-#include "convert_knots.h"
-```
-
-Next, we will want to try out converter on some values and print them out to make sure they
-make sense. We will do this by calling our function in the main, and printing the output
-to `cout`:
-
-```cpp
-int main() {
-  cout << "Hello World" << endl;
-
-  // Add your tests:
-  cout << "Knots(2) = " << knots_to_miles_per_minute(2) << endl;
-
-  return 0;
-}
-```
-
-This will call the function `knots_to_miles_per_minute` with the value `2`, and then
-print that value as shown in the format above. The output (after building and running)
-should look something like this:
-
-```bash
-Hello World
-Knots(2) = 0.0383593
-```
-
-It is OK if the output is not that exact number, so long as it is accurate within 2
-decimal places. When you feel that you have successfully implemented the `knots converter`,
-you can either check the `HW1` document for the remaining assignment problems, or move on to
-[Build Instructions](#build-instructions) to test your new `converter`!
+your function and the number provided are equal. Now that we have written our tests, we will
+want to build it and test that everything works!
 
 ## Build Instructions
 
@@ -333,22 +288,28 @@ You can either build everything at once:
 cmake --build build   # Will build all of the `targets` described in the `CMake` file
 ```
 
-Or you can pick a specific target to build. For this homework, there are 3 possible `targets`:
-`hw` (which is the `main.cpp` file you created above), `knot_gtests` (`knot_gtests.cpp`), and
-`stack_gtests` (`stack_gtests.cpp`). These `targets` are defined in the `CMakeLists.txt` file
-as `project(<name>)`, so if you want to find the `targets` yourself, you can always check that
-file. We will also always give you the available `targets` in this class. Below are the individual
-`target` commands you can run:
+Or you can pick a specific target to build. For this homework, there are 6 possible `targets`:
+`knot` (which is the `convert_knots.cpp` file), `knot_gtests` (`knot_gtests.cpp`), `stack` (`stack.cpp`)
+`stack_gtests` (`stack_gtests.cpp`), `count` (`letter_count.cpp`), and `count_gtests` (`letter_count.cpp`).
+These `targets` are defined in the `CMakeLists.txt` file as `project(<name> CXX)`, so if you want to find
+the `targets` yourself, you can always check that file. We will also always give you the available `targets`
+in this class. Below are the individual `target` commands you can run:
 
 ```bash
-# Build only main.cpp:
-cmake --build build --target hw
+# Build only convert_knots.cpp:
+cmake --build build --target knot
 
 # Build only Knot tests:
 cmake --build build --target knot_gtests
 
+# Build only stack.cpp:
+cmake --build build --target stack
+
 # Build only Stack tests:
 cmake --build build --target stack_gtests
+
+# Build only letter_count.cpp:
+cmake --build build --target count
 
 # Build only the Letter Count tests:
 cmake --build build --target count_gtests
@@ -375,7 +336,9 @@ You will have `hw` which will be the code from `main.cpp`, `knot_gtests`, and `s
 You can run each one with the commands shown below:
 
 ```bash
-./build/hw            # Runs the 'main' function from src/main.cpp
+./build/knot          # Runs the 'main' function from src/convert_knots.cpp
+./build/stack         # Runs the 'main' function from src/stack.cpp
+./build/count         # Runs the 'main' function from src/letter_count.cpp
 ./build/knot_gtests   # Runs the 'knot' gtest set of tests
 ./build/stack_gtests  # Runs the 'Stack' gtests
 ./build/count_gtests  # Runs the 'Letter Count' gtests
@@ -418,6 +381,7 @@ On `Gradescope`, press the `submit` button and it will bring up the following wi
 
 ![](docs/submit_files.png)
 
-Then you will drag and drop the `main.cpp`, `convert_knots.h`, `letter_count.h`, and `stack.h` files from your `src` folder
-(or wherever you have made this file) and press upload. As these are the only files we are changing, they
-should be the only files that you upload!
+Then you will drag and drop the `convert_knots.h`, `convert_knots.cpp`, `letter_count.h`,
+`letter_count.cpp`, `stack.h`, and `stack.cpp` files from your `src` folder
+(or wherever you have made this file) and press upload. As these are the only files we are changing (for the homework,
+not for testing), they should be the only files that you upload!

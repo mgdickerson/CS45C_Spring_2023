@@ -5,11 +5,13 @@
 // https://github.com/google/googletest/blob/main/docs/primer.md
 // -------------------------------------------------------------------------- //
 
-// Include all of your *.h files you want to unit test:
-#include "stack.h"
-
 #include <gtest/gtest.h>
 #include <cmath>
+#include <string>
+
+using namespace std;
+// Include all of your *.h files you want to unit test:
+#include "stack.h"
 
 namespace {
 
@@ -34,6 +36,24 @@ TEST(Stack, Empty) {
   EXPECT_FALSE(st.isEmpty());
   st.pop();
   EXPECT_TRUE(st.isEmpty());
+}
+
+TEST(Stack, PushAll) {
+  Stack st;
+  std::string s = "push";
+  push_all(st, s);
+  for (int i = 3; i >= 0; --i) {
+    EXPECT_EQ(s[i], st.pop());
+  }
+}
+
+TEST(Stack, PopAll) {
+  Stack st;
+  std::string s = "push";
+  push_all(st, s);
+  testing::internal::CaptureStdout();
+  pop_all(st);
+  std::string output = testing::internal::GetCapturedStdout();
 }
 
 // ADD YOUR TESTS HERE:

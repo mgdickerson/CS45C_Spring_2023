@@ -104,6 +104,31 @@ Next, we will checkout the `hw1` branch. In the same terminal as before, you wil
 git checkout hw1
 ```
 
+WARNING: It is possible that you already have a copy of the `hw1` branch for any reason. The easiest
+way to update to the new instructions is to delete your private repositories' copy of the branch and
+then re-checkout `hw1` and follow the rest of the instructions. (So if you see the, `multiple (2) remote
+tracking branches` error, this is likely what is happening to you):
+
+```bash
+# WARNING: The following commands will delete ALL changes you have made to the hw1 branch. If you have
+# important work saved there, be sure to copy it outside of the folder first!
+cd ../
+mkdir SavedWork
+cp <PrivateRepo>/src/* SavedWork/. (This will copy all files in the src folder)
+
+# Delete the hw1 branch locally
+git branch -D hw1
+
+# Delete the hw1 branch on your private repository on GitHub
+git push origin -d hw1
+
+# After deleting your outdated copy of the hw1 branch, run the checkout command again:
+git checkout hw1
+```
+
+NOTE: If you are very confident in `git`, you can also simply merge the changes, but there will be
+merge conflicts on the `CMakeLists.txt` file, so proceed with caution.
+
 You are now in the `hw1` branch! Now, we will want to add this branch to your private repository
 on `GitHub` and add tracking. To do this, we will run the command:
 
@@ -143,7 +168,7 @@ named `hw1` with the following structure:
 
 ```bash
 ├── CMakeLists.txt
-├── CMakePresets.txt
+├── CMakePresets.json
 ├── gtest
 │   ├── gtestmain.cpp
 │   ├── count_gtests.cpp

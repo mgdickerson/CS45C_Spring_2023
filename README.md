@@ -394,7 +394,7 @@ git push
 Now on Gradescope, press the submit button, choose the `GitHub` option, and select your project and branch
 as shown below:
 
-![](docs/submit_github.png)
+![](docs/cs45c_hw1_github.png)
 
 Now the autograder will run and give you a score!
 

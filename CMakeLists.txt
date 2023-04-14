@@ -18,6 +18,7 @@ set(COINS_SRC_FILES
 )
 add_executable(coins_simple ${COINS_SRC_FILES} src/coins_simple.cpp)
 add_executable(coins_menu ${COINS_SRC_FILES} src/coins_menu.cpp)
+add_executable(coins_transfer ${COINS_SRC_FILES} src/coins_transfer.cpp)
 
 find_package(GTest)
 if (GTest_FOUND)

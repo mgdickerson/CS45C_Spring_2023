@@ -40,6 +40,7 @@ named `hw2` with the following structure:
     ├── coins.h
     ├── coins_menu.cpp
     ├── coins_simple.cpp
+    ├── coins_transfer.cpp
     ├── word_count.cpp
     ├── word_count.h
     └── word_count_main.cpp
@@ -63,6 +64,9 @@ cmake --build build --target coins_simple
 # Build only coins_menu.cpp:
 cmake --build build --target coins_menu
 
+# Build only coins_transfer.cpp:
+cmake --build build --target coins_transfer
+
 # Build only coins gtests:
 cmake --build build --target coins_gtests
 
@@ -78,6 +82,7 @@ To run the above targets after compiling them:
 ```bash
 ./build/coins_simple        # Runs the 'main' function from src/coins_simple.cpp
 ./build/coins_menu          # Runs the 'main' function from src/coins_menu.cpp
+./build/coins_transfer      # Runs the 'main' function from src/coins_transfer.cpp
 ./build/word_count          # Runs the 'main' function from src/word_count_main.cpp
 ./build/coins_gtests        # Runs the 'coins' gtest set of tests
 ./build/word_count_gtests   # Runs the 'word_count' gtests
@@ -90,5 +95,5 @@ all provided tests, congratulations! You are now ready to [submit](#submission) 
 
 As with previous submissions, you can either submit via `GitHub` by `git commit` and `git push` your
 changes to your private repository, and then submitting the `hw2` branch to `Gradescope`. Or, you can
-upload files directly, namely: `coins.cpp`, `coins.h`, `coins_menu.cpp`, `coins_simple.cpp`,
+upload files directly, namely: `coins.cpp`, `coins.h`, `coins_menu.cpp`, `coins_simple.cpp`, `coins_transfer.cpp`,
 `word_count.cpp`, `word_count.h`, and `word_count_main.cpp`.

@@ -18,7 +18,7 @@ git fetch public
 # Checkout hw2 from the public branch:
 git checkout hw2
 
-# Push the newly checkedout branch to your private repository:
+# Push the newly checked out branch to your private repository:
 git push -u origin hw2
 ```
 
@@ -76,9 +76,9 @@ cmake --build build --target word_count_gtests
 To run the above targets after compiling them:
 
 ```bash
-./build/knot                # Runs the 'main' function from src/coins_simple.cpp
-./build/stack               # Runs the 'main' function from src/coins_menu.cpp
-./build/count               # Runs the 'main' function from src/word_count_main.cpp
+./build/coins_simple        # Runs the 'main' function from src/coins_simple.cpp
+./build/coins_menu          # Runs the 'main' function from src/coins_menu.cpp
+./build/word_count          # Runs the 'main' function from src/word_count_main.cpp
 ./build/coins_gtests        # Runs the 'coins' gtest set of tests
 ./build/word_count_gtests   # Runs the 'word_count' gtests
 ```

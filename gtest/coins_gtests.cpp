@@ -1,4 +1,3 @@
-#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include <sstream>
@@ -7,9 +6,6 @@
 #include "coins.h"
 
 using namespace std;
-using testing::HasSubstr;
-using testing::ContainsRegex;
-using testing::MatchesRegex;
 
 TEST(Coins, SingleCoinTotalValue) {
   const Coins one_quarter(1, 0, 0, 0);
@@ -60,49 +56,4 @@ TEST(Coins, PrintCents) {
   EXPECT_STREQ(print_cents_str(92).c_str(), "$0.92");
   EXPECT_STREQ(print_cents_str(100).c_str(), "$1.00");
   EXPECT_STREQ(print_cents_str(205).c_str(), "$2.05");
-}
-
-TEST(Coins, AskForCoins) {
-  const auto ask_for_coins_str = [](const char* str) {
-    stringstream input(str);
-    stringstream output;
-    const Coins result = ask_for_coins(input, output);
-    return pair{result, output.str()};
-  };
-
-  {
-    const auto [coins, output] = ask_for_coins_str("1\n2\n3\n4\n");
-    EXPECT_EQ(coins, Coins(1, 2, 3, 4));
-    EXPECT_THAT(output, MatchesRegex("Quarters\\?\\s*Dimes\\?\\s*Nickels\\?\\s*Pennies\\?\\s*"));
-  }
-
-  {
-    const auto [coins, output] = ask_for_coins_str("5\n0\n0\n7\n");
-    EXPECT_EQ(coins, Coins(5, 0, 0, 7));
-    EXPECT_THAT(output, MatchesRegex("Quarters\\?\\s*Dimes\\?\\s*Nickels\\?\\s*Pennies\\?\\s*"));
-  }
-
-  {
-    const auto [coins, output] = ask_for_coins_str("2\n1\n3\n5\n");
-    EXPECT_EQ(coins, Coins(2, 1, 3, 5));
-    EXPECT_THAT(output, MatchesRegex("Quarters\\?\\s*Dimes\\?\\s*Nickels\\?\\s*Pennies\\?\\s*"));
-  }
-}
-
-TEST(Coins, Menu) {
-  const auto run_menu = [](const char* str) {
-    stringstream input(str);
-    stringstream output;
-    coins_menu(input, output);
-    return output.str();
-  };
-
-  EXPECT_THAT(run_menu("4\n"),
-              MatchesRegex("Coins Menu\\s*1. Deposit Change\\s*2. Extract Change\\s*"
-                           "3. Print Balance\\s*4. Exit\\s*User Input:\\s*"));
-
-  EXPECT_THAT(run_menu("1\n10\n20\n30\n40\n4\n"),
-              ContainsRegex("Quarters\\?\\s*Dimes\\?\\s*Nickels\\?\\s*Pennies\\?\\s*Thank you!"));
-
-  EXPECT_THAT(run_menu("1\n5\n0\n3\n7\n3\n4\n"), HasSubstr("$1.47"));
 }

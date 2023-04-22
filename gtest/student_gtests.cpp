@@ -9,13 +9,13 @@ TEST(StringFunction, strlen) {
 
 TEST(StringFunction, strcpy) {
     char result[10];
-    EXPECT_EQ(strcpy(result, "foo"), result);
+    EXPECT_EQ(String::strcpy(result, "foo"), result);
     EXPECT_STREQ(result, "foo");
 
-    EXPECT_EQ(strcpy(result, "a"), result);
+    EXPECT_EQ(String::strcpy(result, "a"), result);
     EXPECT_STREQ(result, "a");
 
-    EXPECT_EQ(strcpy(result, ""), result);
+    EXPECT_EQ(String::strcpy(result, ""), result);
     EXPECT_STREQ(result, "");
 }
 
@@ -32,6 +32,10 @@ TEST(StringFunction, strncat) {
 }
 
 TEST(StringFunction, strcmp) {
+    EXPECT_TRUE(false);
+}
+
+TEST(StringFunction, strncmp) {
     EXPECT_TRUE(false);
 }
 

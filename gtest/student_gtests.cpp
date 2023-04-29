@@ -23,6 +23,10 @@ TEST(StringFunction, strcpy) {
     EXPECT_STREQ(result, "");
 }
 
+TEST(StringFunction, strdup) {
+    EXPECT_TRUE(false);
+}
+
 TEST(StringFunction, strncpy) {
     EXPECT_TRUE(false);
 }

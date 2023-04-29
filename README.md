@@ -54,6 +54,9 @@ as well as the files `gtestmain.cpp` and the individual `gtests`.
 # Produce the `build` folder with the presets provided for the homework:
 cmake --preset default
 
+# NOTE : If you want to use valgrind, use this preset INSTEAD of default:
+cmake --preset valgrind
+
 # Build all targets at once:
 cmake --build build
 

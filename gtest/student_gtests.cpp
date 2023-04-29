@@ -1,6 +1,10 @@
 #include <gtest/gtest.h>
+#include <string.h>
+
+#include <algorithm>
 
 #include "string.hpp"
+#include "alloc.hpp"
 
 TEST(StringFunction, strlen) {
     EXPECT_EQ(String::strlen(""), 0);

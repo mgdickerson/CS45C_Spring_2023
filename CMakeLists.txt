@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(HW3 CXX)
+project(HW4 CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(STRING_FILES
   src/string.cpp
   src/string.hpp
+  src/alloc.cpp
+  src/alloc.hpp
 )
 add_executable(standard_main ${STRING_FILES} src/standard_main.cpp)
 

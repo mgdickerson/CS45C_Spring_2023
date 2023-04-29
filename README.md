@@ -1,12 +1,12 @@
-# ICS 45C: Homework 3 
+# ICS 45C: Homework 4 
 
-Welcome to ICS 45C Homework 3! Instructions from this point on will assume the use of `GitHub`.
+Welcome to ICS 45C Homework 4! Instructions from this point on will assume the use of `GitHub`.
 If you are working without github, then copy the [Directory Structure](#directory-structure).
 
 ## Getting Started
 
 To get started with this homework, first you will need to `fetch` changes to your personal repository,
-checkout `hw3`, then push the `hw3` branch to your remote repository.
+checkout `hw4`, then push the `hw4` branch to your remote repository.
 
 ```bash
 # Move into your personal private repository folder:
@@ -15,17 +15,17 @@ cd <PrivateRepositoryFolder>
 # Fetch updates:
 git fetch public
 
-# Checkout hw3 from the public branch:
-git checkout hw3
+# Checkout hw4 from the public branch:
+git checkout hw4
 
 # Push the newly checked out branch to your private repository:
-git push -u origin hw3
+git push -u origin hw4
 ```
 
 ## Directory Structure
 
 If you are not using `GitHub`, and want to use our testing framework, you will need to make a folder
-named `hw3` with the following structure:
+named `hw4` with the following structure:
 
 ```bash
 .
@@ -38,6 +38,8 @@ named `hw3` with the following structure:
 │   └── student_gtests.cpp
 ├── README.md
 └── src
+    ├── alloc.cpp
+    ├── alloc.hpp
     ├── standard_main.cpp
     ├── string.cpp
     └── string.hpp
@@ -83,5 +85,6 @@ all provided tests, congratulations! You are now ready to [submit](#submission) 
 ## Submission
 
 As with previous submissions, you can either submit via `GitHub` by `git commit` and `git push` your
-changes to your private repository, and then submitting the `hw3` branch to `Gradescope`. Or, you can
-upload files directly, namely: `string.cpp`, `string.hpp`, `standard_main.cpp`, and `student_gtests.cpp`.
+changes to your private repository, and then submitting the `hw4` branch to `Gradescope`. Or, you can
+upload files directly, namely: `alloc.hpp`, `alloc.cpp`, `string.cpp`, `string.hpp`, `standard_main.cpp`,
+and `student_gtests.cpp`.

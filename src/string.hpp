@@ -90,7 +90,7 @@ private:
     // an instance of a class that doesn't satisfy the invariants of the class
     // (for example without null-terminator).
     // Useful for implementing reverse() and operator +()
-    String(int length);
+    explicit String(int length);
 };
 
 std::ostream &operator<<(std::ostream &out, String s);

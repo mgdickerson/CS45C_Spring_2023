@@ -23,7 +23,7 @@
             "name": "valgrind",
             "displayName": "Valgrind",
             "description": "Valgrind build settings with sanitizers disabled using GCC & GDB in Debug mode",
-            "binaryDir": "${sourceDir}/build",
+            "binaryDir": "${sourceDir}/build_valgrind",
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "g++",
                 "CMAKE_BUILD_TYPE": "Debug",

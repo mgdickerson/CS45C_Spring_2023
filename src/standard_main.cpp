@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void run_tests() {
+void test() {
     String firstString("First");
     String secondString("Second");
     String thirdString(firstString);
@@ -42,6 +42,6 @@ void run_tests() {
 
 int main() {
     AllocationTracker tracker;
-    run_tests();
+    test();
     tracker.print_allocation_report(std::cout);
 }

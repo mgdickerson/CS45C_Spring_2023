@@ -2,59 +2,41 @@
 #include <string.h>
 
 #include <algorithm>
+#include <sstream>
 
-#include "string.hpp"
 #include "alloc.hpp"
+#include "list.hpp"
 
-TEST(StringFunction, strlen) {
-    EXPECT_EQ(String::strlen(""), 0);
-    EXPECT_EQ(String::strlen("foo"), 3);
+using namespace std;
+using list::Node;
+
+TEST(ListTests, FromStringBasic) {
+    Node* const foo_list_head = list::from_string("foo");
+    Node* foo_list = foo_list_head;
+
+    EXPECT_EQ(foo_list->data, 'f');
+    ASSERT_NE(foo_list->next, nullptr);
+
+    foo_list = foo_list->next;
+    EXPECT_EQ(foo_list->data, 'o');
+    ASSERT_NE(foo_list->next, nullptr);
+
+    foo_list = foo_list->next;
+    EXPECT_EQ(foo_list->data, 'o');
+    ASSERT_EQ(foo_list->next, nullptr);
+
+    list::free(foo_list_head);
 }
 
-TEST(StringFunction, strcpy) {
-    char result[10];
-    EXPECT_EQ(String::strcpy(result, "foo"), result);
-    EXPECT_STREQ(result, "foo");
-
-    EXPECT_EQ(String::strcpy(result, "a"), result);
-    EXPECT_STREQ(result, "a");
-
-    EXPECT_EQ(String::strcpy(result, ""), result);
-    EXPECT_STREQ(result, "");
+TEST(ListTests, Length) {
+    Node* const head = list::from_string("foo");
+    EXPECT_EQ(list::length(head), 3);
+    list::free(head);
 }
 
-TEST(StringFunction, strdup) {
-    EXPECT_TRUE(false);
-}
+// Add remaining tests below. All tests should follow
+// the format of `TEST(ListTests, <TestName>){}`.
 
-TEST(StringFunction, strncpy) {
-    EXPECT_TRUE(false);
-}
-
-TEST(StringFunction, strcat) {
-    EXPECT_TRUE(false);
-}
-
-TEST(StringFunction, strncat) {
-    EXPECT_TRUE(false);
-}
-
-TEST(StringFunction, strcmp) {
-    EXPECT_TRUE(false);
-}
-
-TEST(StringFunction, strncmp) {
-    EXPECT_TRUE(false);
-}
-
-TEST(StringFunction, reverse_cpy) {
-    EXPECT_TRUE(false);
-}
-
-TEST(StringFunction, strchr) {
-    EXPECT_TRUE(false);
-}
-
-TEST(StringFunction, strstr) {
+TEST(ListTests, ReplaceMe) {
     EXPECT_TRUE(false);
 }

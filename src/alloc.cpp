@@ -182,7 +182,7 @@ void operator delete[](void* ptr) noexcept {
 
     bool success = true;
     for (AllocationTracker::State* tracker : trackers) {
-        success |= tracker->delete_allocation(ptr, AllocationType::Array);
+        success &= tracker->delete_allocation(ptr, AllocationType::Array);
     }
 
     if (success) {
@@ -197,7 +197,7 @@ void operator delete[](void* ptr, std::size_t) noexcept {
 
     bool success = true;
     for (AllocationTracker::State* tracker : trackers) {
-        success |= tracker->delete_allocation(ptr, AllocationType::Array);
+        success &= tracker->delete_allocation(ptr, AllocationType::Array);
     }
 
     if (success) {

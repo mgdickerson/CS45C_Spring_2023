@@ -1,7 +1,10 @@
 #ifndef STRING_HPP
 #define STRING_HPP
 
+#include <compare>
 #include <iosfwd>
+
+#include "list.hpp"
 
 class String {
 public:
@@ -12,15 +15,20 @@ public:
     String(const String &s);
 
     // construct this string by moving from string s
-    // String(String &&s);
-    // swap buf between this string and s using std::swap, explained later
+    String(String &&s);
+
+    // swap this string with s
     void swap(String &s);
 
     // assignment operator from one string, s, to this string
-    String &operator=(String s);
+    String &operator=(const String &s);
 
-    // assign to this string by moving from string s
-    // String &operator=(String &&s);
+    // assign to this string by moving
+    String &operator=(String &&s);
+
+    // check if we can index at position i in this string
+    bool in_bounds(int index) const;
+
     // allow indexing this string with notation s[i]
     char &operator[](int index);
 
@@ -37,21 +45,20 @@ public:
     int indexOf(char c) const;
 
     // returns index into this string for first occurrence of s
-    int indexOf(String s) const;
+    int indexOf(const String &s) const;
 
-    // relational operators for comparing this strings to another string
-    bool operator==(String s) const;
-    bool operator!=(String s) const;
-    bool operator>(String s) const;
-    bool operator<(String s) const;
-    bool operator<=(String s) const;
-    bool operator>=(String s) const;
+    // compare this string with another string by equality
+    // note: != is auto-generated since C++20
+    bool operator==(const String &s) const;
+
+    // C++20 way of defining all comparisons at once
+    std::strong_ordering operator<=>(const String &s) const;
 
     // concatenate this and s to form a return string
-    String operator+(String s) const;
+    String operator+(const String &s) const;
 
     // concatenate s onto the end of this string
-    String &operator+=(String s);
+    String &operator+=(const String &s);
 
     // print this string, hint: use operator << to send buf to out
     void print(std::ostream &out) const;
@@ -62,37 +69,14 @@ public:
 
     // destructor for this string
     ~String();
-
-    bool in_bounds(int i) const {
-        return i >= 0 && i < strlen(buf);
-    }
-
-    // These static helper methods will ultimately be changed to private,
-    // but are made public so that you (and the autograder) can test them.
-    static int strlen(const char *s);
-    static char *strcpy(char *dest, const char *src);
-    static char *strdup(const char *src);
-    static char *strncpy(char *dest, const char *src, int n);
-    static char *strcat(char *dest, const char *src);
-    static char *strncat(char *dest, const char *src, int n);
-    static int strcmp(const char *left, const char *right);
-    static int strncmp(const char *left, const char *right, int n);
-    static void reverse_cpy(char *dest, const char *src);
-    static const char *strchr(const char *str, char c);
-    static const char *strstr(const char *haystack, const char *needle);
-
 private:
-    char *buf;  // array for the characters in this String
-                // DO NOT add any data members - use the null terminator
+    list::Node* head;
 
-    // construct string with a buffer of given length
-    // Note: private constructors are used when you want to construct
-    // an instance of a class that doesn't satisfy the invariants of the class
-    // (for example without null-terminator).
-    // Useful for implementing reverse() and operator +()
-    explicit String(int length);
+    // private constructor that takes ownership of the given list
+    explicit String(list::Node* head);
 };
 
-std::ostream &operator<<(std::ostream &out, String s);
+std::ostream &operator<<(std::ostream &out, const String &s);
 std::istream &operator>>(std::istream &in, String &s);
+
 #endif

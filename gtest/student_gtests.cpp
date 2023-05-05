@@ -1,10 +1,5 @@
 #include <gtest/gtest.h>
-#include <string.h>
 
-#include <algorithm>
-#include <sstream>
-
-#include "alloc.hpp"
 #include "list.hpp"
 
 using namespace std;

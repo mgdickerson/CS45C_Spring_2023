@@ -54,9 +54,6 @@ as well as the files `gtestmain.cpp` and the individual `gtests`.
 # Produce the `build` folder with the presets provided for the homework:
 cmake --preset default
 
-# NOTE : If you want to use valgrind, use this preset INSTEAD of default:
-cmake --preset valgrind
-
 # Build all targets at once:
 cmake --build build
 
@@ -76,6 +73,33 @@ To run the above targets after compiling them:
 ./build/standard_main        # Runs the 'main' function from src/standard_main.cpp
 ./build/string_gtests        # Runs the 'string' gtests
 ./build/student_gtests       # Runs the 'student' gtests
+```
+
+NOTE : If you want to also use valgrind to check your code, use these instructions:
+
+```bash
+# Produce the `build_valgrind` folder with the presets provided for the homework:
+cmake --preset valgrind
+
+# Build all targets at once:
+cmake --build build_valgrind
+
+# Build only standard_main.cpp:
+cmake --build build_valgrind --target standard_main
+
+# Build string gtests:
+cmake --build build_valgrind --target string_gtests
+
+# Build student gtests:
+cmake --build build_valgrind --target student_gtests
+```
+
+Then run the above targets with:
+
+```bash
+./build_valgrind/standard_main        # Runs the 'main' function from src/standard_main.cpp
+./build_valgrind/string_gtests        # Runs the 'string' gtests
+./build_valgrind/student_gtests       # Runs the 'student' gtests
 ```
 
 Once you have run the code above and it either produces the output you expected or passes

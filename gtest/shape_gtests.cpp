@@ -38,5 +38,5 @@ TEST(CircleTests, Print) {
     std::stringstream out;
     c.print(out);
 
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)");
+    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
 }

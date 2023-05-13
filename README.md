@@ -1,12 +1,12 @@
-# ICS 45C: Homework 5 
+# ICS 45C: Homework 6 
 
-Welcome to ICS 45C Homework 5! Instructions from this point on will assume the use of `GitHub`.
+Welcome to ICS 45C Homework 6! Instructions from this point on will assume the use of `GitHub`.
 If you are working without github, then copy the [Directory Structure](#directory-structure).
 
 ## Getting Started
 
 To get started with this homework, first you will need to `fetch` changes to your personal repository,
-checkout `hw5`, then push the `hw5` branch to your remote repository.
+checkout `hw6`, then push the `hw6` branch to your remote repository.
 
 ```bash
 # Move into your personal private repository folder:
@@ -15,17 +15,17 @@ cd <PrivateRepositoryFolder>
 # Fetch updates:
 git fetch public
 
-# Checkout hw5 from the public branch:
-git checkout hw5
+# Checkout hw6 from the public branch:
+git checkout hw6
 
 # Push the newly checked out branch to your private repository:
-git push -u origin hw5
+git push -u origin hw6
 ```
 
 ## Directory Structure
 
 If you are not using `GitHub`, and want to use our testing framework, you will need to make a folder
-named `hw5` with the following structure:
+named `hw6` with the following structure:
 
 ```bash
 .
@@ -33,16 +33,25 @@ named `hw5` with the following structure:
 ├── CMakePresets.json
 ├── gtest
 │   ├── gtestmain.cpp
-│   ├── string_gtests.cpp
+│   ├── picture_gtests.cpp
+│   ├── shape_gtests.cpp
 │   └── student_gtests.cpp
 └── src
     ├── alloc.cpp
     ├── alloc.hpp
-    ├── list.cpp
-    ├── list.hpp
+    ├── circle.cpp
+    ├── circle.hpp
+    ├── picture.cpp
+    ├── picture.hpp
+    ├── rectangle.cpp
+    ├── rectangle.hpp
+    ├── shape.cpp
+    ├── shape.hpp
+    ├── square.cpp
+    ├── square.hpp
     ├── standard_main.cpp
-    ├── string.cpp
-    └── string.hpp
+    ├── triangle.cpp
+    └── triangle.hpp
 ```
 
 You should copy everything from the `CMakeLists.txt` and `CMakePresets.json` files into your own,
@@ -58,10 +67,13 @@ cmake --preset default
 cmake --build build
 
 # Build only standard_main.cpp:
-cmake --build build --target standard_main
+cmake --build build --target picture_main
 
-# Build string gtests:
-cmake --build build --target string_gtests
+# Build shape gtests:
+cmake --build build --target shape_gtests
+
+# Build picture gtests:
+cmake --build build --target picture_gtests
 
 # Build student gtests:
 cmake --build build --target student_gtests
@@ -70,8 +82,9 @@ cmake --build build --target student_gtests
 To run the above targets after compiling them:
 
 ```bash
-./build/standard_main        # Runs the 'main' function from src/standard_main.cpp
-./build/string_gtests        # Runs the 'string' gtests
+./build/picture_main         # Runs the 'main' function from src/standard_main.cpp
+./build/shape_gtests         # Runs the 'shape' gtests
+./build/picture_gtests       # Runs the 'picture' gtests
 ./build/student_gtests       # Runs the 'student' gtests
 ```
 
@@ -84,11 +97,14 @@ cmake --preset valgrind
 # Build all targets at once:
 cmake --build build_valgrind
 
-# Build only standard_main.cpp:
-cmake --build build_valgrind --target standard_main
+# Build only picture_main.cpp:
+cmake --build build_valgrind --target picture_main
 
-# Build string gtests:
-cmake --build build_valgrind --target string_gtests
+# Build shape gtests:
+cmake --build build_valgrind --target shape_gtests
+
+# Build picture gtests:
+cmake --build build_valgrind --target picture_gtests
 
 # Build student gtests:
 cmake --build build_valgrind --target student_gtests
@@ -97,8 +113,9 @@ cmake --build build_valgrind --target student_gtests
 Then run the above targets with:
 
 ```bash
-./build_valgrind/standard_main        # Runs the 'main' function from src/standard_main.cpp
-./build_valgrind/string_gtests        # Runs the 'string' gtests
+./build_valgrind/picture_main         # Runs the 'main' function from src/standard_main.cpp
+./build_valgrind/shape_gtests         # Runs the 'shape' gtests
+./build_valgrind/picture_gtests       # Runs the 'picture' gtests
 ./build_valgrind/student_gtests       # Runs the 'student' gtests
 ```
 
@@ -108,6 +125,7 @@ all provided tests, congratulations! You are now ready to [submit](#submission) 
 ## Submission
 
 As with previous submissions, you can either submit via `GitHub` by `git commit` and `git push` your
-changes to your private repository, and then submitting the `hw5` branch to `Gradescope`. Or, you can
-upload files directly, namely: `alloc.hpp`, `alloc.cpp`, `list.hpp`, `list.cpp`, `string.cpp`,
-`string.hpp`, `standard_main.cpp`, and `student_gtests.cpp`.
+changes to your private repository, and then submitting the `hw6` branch to `Gradescope`. Or, you can
+upload files directly, namely: `alloc<.hpp/.cpp>`, `circle<.hpp/.cpp>`, `picture<.hpp/.cpp>`,
+`rectangle<.hpp/.cpp>`, `shape<.hpp/.cpp>`, `square<.hpp/.cpp>`, `triangle<.hpp/.cpp>`,
+`standard_main.cpp`, and `student_gtests.cpp`.

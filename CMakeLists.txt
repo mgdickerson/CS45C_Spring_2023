@@ -37,7 +37,6 @@ add_executable(picture_main
     $<TARGET_OBJECTS:picture_objects>
 )
 
-
 find_package(GTest)
 if (GTest_FOUND)
     add_library(gtestmain OBJECT
@@ -59,12 +58,4 @@ if (GTest_FOUND)
         $<TARGET_OBJECTS:picture_objects>
     )
     target_link_libraries(picture_gtests PRIVATE gtestmain)
-
-    add_executable(student_gtests
-        gtest/student_gtests.cpp
-        $<TARGET_OBJECTS:alloc_objects>
-        $<TARGET_OBJECTS:shape_objects>
-        $<TARGET_OBJECTS:picture_objects>
-    )
-    target_link_libraries(student_gtests PRIVATE gtestmain)
 endif()

@@ -35,7 +35,6 @@ named `hw6` with the following structure:
 │   ├── gtestmain.cpp
 │   ├── picture_gtests.cpp
 │   ├── shape_gtests.cpp
-│   └── student_gtests.cpp
 └── src
     ├── alloc.cpp
     ├── alloc.hpp
@@ -74,9 +73,6 @@ cmake --build build --target shape_gtests
 
 # Build picture gtests:
 cmake --build build --target picture_gtests
-
-# Build student gtests:
-cmake --build build --target student_gtests
 ```
 
 To run the above targets after compiling them:
@@ -85,7 +81,6 @@ To run the above targets after compiling them:
 ./build/picture_main         # Runs the 'main' function from src/standard_main.cpp
 ./build/shape_gtests         # Runs the 'shape' gtests
 ./build/picture_gtests       # Runs the 'picture' gtests
-./build/student_gtests       # Runs the 'student' gtests
 ```
 
 NOTE : If you want to also use valgrind to check your code, use these instructions:
@@ -106,8 +101,6 @@ cmake --build build_valgrind --target shape_gtests
 # Build picture gtests:
 cmake --build build_valgrind --target picture_gtests
 
-# Build student gtests:
-cmake --build build_valgrind --target student_gtests
 ```
 
 Then run the above targets with:
@@ -116,7 +109,6 @@ Then run the above targets with:
 ./build_valgrind/picture_main         # Runs the 'main' function from src/standard_main.cpp
 ./build_valgrind/shape_gtests         # Runs the 'shape' gtests
 ./build_valgrind/picture_gtests       # Runs the 'picture' gtests
-./build_valgrind/student_gtests       # Runs the 'student' gtests
 ```
 
 Once you have run the code above and it either produces the output you expected or passes
@@ -128,4 +120,4 @@ As with previous submissions, you can either submit via `GitHub` by `git commit`
 changes to your private repository, and then submitting the `hw6` branch to `Gradescope`. Or, you can
 upload files directly, namely: `alloc<.hpp/.cpp>`, `circle<.hpp/.cpp>`, `picture<.hpp/.cpp>`,
 `rectangle<.hpp/.cpp>`, `shape<.hpp/.cpp>`, `square<.hpp/.cpp>`, `triangle<.hpp/.cpp>`,
-`standard_main.cpp`, and `student_gtests.cpp`.
+and `standard_main.cpp`.

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(HW6 CXX)
+project(HW7 CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -12,29 +12,13 @@ add_library(alloc_objects OBJECT
     src/alloc.hpp
 )
 
-add_library(shape_objects OBJECT
-    src/shape.hpp
-    src/shape.cpp
-    src/circle.cpp
-    src/circle.hpp
-    src/square.cpp
-    src/square.hpp
-    src/rectangle.cpp
-    src/rectangle.hpp
-    src/triangle.cpp
-    src/triangle.hpp
-)
-
-add_library(picture_objects OBJECT
-    src/picture.hpp
-    src/picture.cpp
-)
-
-add_executable(picture_main
+add_executable(standard_main
     src/standard_main.cpp
+    src/array.hpp
+    src/array_impl.hpp
+    src/matrix.hpp
+    src/matrix_impl.hpp
     $<TARGET_OBJECTS:alloc_objects>
-    $<TARGET_OBJECTS:shape_objects>
-    $<TARGET_OBJECTS:picture_objects>
 )
 
 find_package(GTest)
@@ -45,17 +29,21 @@ if (GTest_FOUND)
     target_include_directories(gtestmain PUBLIC src ${GTEST_INCLUDE_DIRS})
     target_link_libraries(gtestmain PUBLIC ${GTEST_LIBRARIES})
 
-    add_executable(shape_gtests
-        gtest/shape_gtests.cpp
-        $<TARGET_OBJECTS:shape_objects>
-    )
-    target_link_libraries(shape_gtests PRIVATE gtestmain)
-
-    add_executable(picture_gtests
-        gtest/picture_gtests.cpp
+    add_executable(array_gtests
+        gtest/array_gtests.cpp
+        src/array.hpp
+        src/array_impl.hpp
         $<TARGET_OBJECTS:alloc_objects>
-        $<TARGET_OBJECTS:shape_objects>
-        $<TARGET_OBJECTS:picture_objects>
     )
-    target_link_libraries(picture_gtests PRIVATE gtestmain)
+    target_link_libraries(array_gtests PRIVATE gtestmain)
+
+    add_executable(matrix_gtests
+        gtest/matrix_gtests.cpp
+        src/array.hpp
+        src/array_impl.hpp
+        src/matrix.hpp
+        src/matrix_impl.hpp
+        $<TARGET_OBJECTS:alloc_objects>
+    )
+    target_link_libraries(matrix_gtests PRIVATE gtestmain)
 endif()

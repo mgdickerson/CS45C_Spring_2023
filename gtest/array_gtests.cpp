@@ -1,29 +1,17 @@
 #include <gtest/gtest.h>
 
-#include <sstream>
+#include <string>
 
 #include "array.hpp"
 
-TEST(ArrayTests, PrintFill) {
-    {
-        Array<double> xs{3};
-        xs[0] = 1.23232;
-        xs[1] = 5.0;
-        xs[2] = 3.141592;
+using namespace std;
 
-        std::stringstream out;
-        out << xs;
-        EXPECT_EQ(out.str(), "");
-    }
+TEST(ArrayTests, Length) {
+    Array<int> arr{3};
+    EXPECT_EQ(arr.length(), 3);
 
-    {
-        Array<int> xs{3};
-        xs[0] = 1;
-        xs[1] = 2;
-        xs[2] = 3;
+    Array<string> arr2{10};
+    EXPECT_EQ(arr2.length(), 10);
 
-        std::stringstream out;
-        out << xs;
-        EXPECT_EQ(out.str(), "");
-    }
+    EXPECT_EQ(Array<double>{}.length(), 0);
 }

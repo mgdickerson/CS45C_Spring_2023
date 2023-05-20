@@ -1,17 +1,21 @@
 #include <gtest/gtest.h>
 
-#include <sstream>
+#include <string>
 
 #include "matrix.hpp"
 
-TEST(MatrixTests, PrintFill) {
-    Matrix<double> xs{2, 2};
-    xs[0][0] = 1.23232;
-    xs[0][1] = 2.5;
-    xs[1][0] = 3;
-    xs[1][1] = 0;
+using namespace std;
 
-    std::stringstream out;
-    out << xs;
-    EXPECT_EQ(out.str(), "");
+TEST(MatrixTests, RowsAndCols) {
+    Matrix<int> mat{3, 2};
+    EXPECT_EQ(mat.num_rows(), 2);
+    EXPECT_EQ(mat.num_cols(), 3);
+
+    Matrix<double> mat2{5, 1};
+    EXPECT_EQ(mat.num_rows(), 5);
+    EXPECT_EQ(mat.num_cols(), 1);
+
+    Matrix<string> mat3;
+    EXPECT_EQ(mat.num_rows(), 0);
+    EXPECT_EQ(mat.num_cols(), 0);
 }

@@ -33,15 +33,15 @@ named `hw7` with the following structure:
 ├── CMakePresets.json
 ├── gtest
 │   ├── array_gtests.cpp
+│   ├── int_array_gtests.cpp
 │   ├── gtestmain.cpp
 │   └── matrix_gtests.cpp
 └── src
     ├── alloc.cpp
     ├── alloc.hpp
     ├── array.hpp
-    ├── array_impl.hpp
+    ├── int_array.hpp
     ├── matrix.hpp
-    ├── matrix_impl.hpp
     └── standard_main.cpp
 ```
 
@@ -60,6 +60,9 @@ cmake --build build
 # Build only standard_main.cpp:
 cmake --build build --target standard_main
 
+# Build int_array gtests:
+cmake --build build --target int_array_gtests
+
 # Build array gtests:
 cmake --build build --target array_gtests
 
@@ -71,6 +74,7 @@ To run the above targets after compiling them:
 
 ```bash
 ./build/standard_main       # Runs the 'main' function from src/standard_main.cpp
+./build/int_array_gtests    # Runs the 'int_array' gtests
 ./build/array_gtests        # Runs the 'array' gtests
 ./build/matrix_gtests       # Runs the 'matrix' gtests
 ```
@@ -109,5 +113,5 @@ all provided tests, congratulations! You are now ready to [submit](#submission) 
 
 As with previous submissions, you can either submit via `GitHub` by `git commit` and `git push` your
 changes to your private repository, and then submitting the `hw7` branch to `Gradescope`. Or, you can
-upload files directly, namely: `alloc<.hpp/.cpp>`, `array.hpp`, `array_impl.hpp`,
-`matrix.hpp`, `matrix_impl.hpp`, `standard_main.cpp`.
+upload files directly, namely: `alloc<.hpp/.cpp>`, `array.hpp`, `int_array.hpp`,
+`matrix.hpp`, and `standard_main.cpp`.

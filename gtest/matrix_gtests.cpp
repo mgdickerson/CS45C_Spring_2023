@@ -8,8 +8,8 @@ using namespace std;
 
 TEST(MatrixTests, RowsAndCols) {
     Matrix<int> mat{3, 2};
-    EXPECT_EQ(mat.num_rows(), 2);
-    EXPECT_EQ(mat.num_cols(), 3);
+    EXPECT_EQ(mat.num_rows(), 3);
+    EXPECT_EQ(mat.num_cols(), 2);
 
     Matrix<double> mat2{5, 1};
     EXPECT_EQ(mat.num_rows(), 5);

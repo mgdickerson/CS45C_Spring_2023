@@ -15,9 +15,7 @@ add_library(alloc_objects OBJECT
 add_executable(standard_main
     src/standard_main.cpp
     src/array.hpp
-    src/array_impl.hpp
     src/matrix.hpp
-    src/matrix_impl.hpp
     $<TARGET_OBJECTS:alloc_objects>
 )
 
@@ -29,10 +27,16 @@ if (GTest_FOUND)
     target_include_directories(gtestmain PUBLIC src ${GTEST_INCLUDE_DIRS})
     target_link_libraries(gtestmain PUBLIC ${GTEST_LIBRARIES})
 
+    add_executable(int_array_gtests
+        gtest/int_array_gtests.cpp
+        src/int_array.hpp
+        $<TARGET_OBJECTS:alloc_objects>
+    )
+    target_link_libraries(int_array_gtests PRIVATE gtestmain)
+
     add_executable(array_gtests
         gtest/array_gtests.cpp
         src/array.hpp
-        src/array_impl.hpp
         $<TARGET_OBJECTS:alloc_objects>
     )
     target_link_libraries(array_gtests PRIVATE gtestmain)
@@ -40,9 +44,7 @@ if (GTest_FOUND)
     add_executable(matrix_gtests
         gtest/matrix_gtests.cpp
         src/array.hpp
-        src/array_impl.hpp
         src/matrix.hpp
-        src/matrix_impl.hpp
         $<TARGET_OBJECTS:alloc_objects>
     )
     target_link_libraries(matrix_gtests PRIVATE gtestmain)

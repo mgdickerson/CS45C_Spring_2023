@@ -1,12 +1,12 @@
-# ICS 45C: Homework 7
+# ICS 45C: Homework 8
 
-Welcome to ICS 45C Homework 7! Instructions from this point on will assume the use of `GitHub`.
+Welcome to ICS 45C Homework 8! Instructions from this point on will assume the use of `GitHub`.
 If you are working without github, then copy the [Directory Structure](#directory-structure).
 
 ## Getting Started
 
 To get started with this homework, first you will need to `fetch` changes to your personal repository,
-checkout `hw7`, then push the `hw7` branch to your remote repository.
+checkout `hw8`, then push the `hw8` branch to your remote repository.
 
 ```bash
 # Move into your personal private repository folder:
@@ -15,34 +15,41 @@ cd <PrivateRepositoryFolder>
 # Fetch updates:
 git fetch public
 
-# Checkout hw7 from the public branch:
-git checkout hw7
+# Checkout hw8 from the public branch:
+git checkout hw8
 
 # Push the newly checked out branch to your private repository:
-git push -u origin hw7
+git push -u origin hw8
 ```
 
 ## Directory Structure
 
 If you are not using `GitHub`, and want to use our testing framework, you will need to make a folder
-named `hw7` with the following structure:
+named `hw8` with the following structure:
 
 ```bash
 .
 ├── CMakeLists.txt
 ├── CMakePresets.json
 ├── gtest
-│   ├── array_gtests.cpp
-│   ├── int_array_gtests.cpp
+│   ├── compute_grades_gtests.cpp
 │   ├── gtestmain.cpp
-│   └── matrix_gtests.cpp
+│   ├── mapset_gtests.cpp
+│   └── process_numbers_gtests.cpp
 └── src
-    ├── alloc.cpp
-    ├── alloc.hpp
-    ├── array.hpp
-    ├── int_array.hpp
-    ├── matrix.hpp
-    └── standard_main.cpp
+    ├── compute_grades.cpp
+    ├── compute_grades.hpp
+    ├── compute_grades_main.cpp
+    ├── gradebook.txt
+    ├── mapset.cpp
+    ├── mapset.hpp
+    ├── mapset_main.cpp
+    ├── process_numbers.cpp
+    ├── process_numbers.hpp
+    ├── process_numbers_main.cpp
+    ├── rand_numbers.txt
+    ├── sample_doc.txt
+    └── stopwords.txt
 ```
 
 You should copy everything from the `CMakeLists.txt` and `CMakePresets.json` files into your own,
@@ -57,53 +64,34 @@ cmake --preset default
 # Build all targets at once:
 cmake --build build
 
-# Build only standard_main.cpp:
-cmake --build build --target standard_main
+# Build only mapset_main.cpp:
+cmake --build build --target mapset
 
-# Build int_array gtests:
-cmake --build build --target int_array_gtests
+# Build only process_numbers_main.cpp:
+cmake --build build --target process_numbers
 
-# Build array gtests:
-cmake --build build --target array_gtests
+# Build only compute_grades_main.cpp:
+cmake --build build --target compute_grades
 
-# Build matrix gtests:
-cmake --build build --target matrix_gtests
+# Build mapset gtests:
+cmake --build build --target mapset_gtests
+
+# Build process_numbers gtests:
+cmake --build build --target process_numbers_gtests
+
+# Build compute_grades gtests:
+cmake --build build --target compute_grades_gtests
 ```
 
 To run the above targets after compiling them:
 
 ```bash
-./build/standard_main       # Runs the 'main' function from src/standard_main.cpp
-./build/int_array_gtests    # Runs the 'int_array' gtests
-./build/array_gtests        # Runs the 'array' gtests
-./build/matrix_gtests       # Runs the 'matrix' gtests
-```
-
-NOTE : If you want to also use valgrind to check your code, use these instructions:
-
-```bash
-# Produce the `build_valgrind` folder with the presets provided for the homework:
-cmake --preset valgrind
-
-# Build all targets at once:
-cmake --build build_valgrind
-
-# Build only standard_main.cpp:
-cmake --build build_valgrind --target standard_main
-
-# Build array gtests:
-cmake --build build_valgrind --target array_gtests
-
-# Build matrix gtests:
-cmake --build build_valgrind --target matrix_gtests
-```
-
-Then run the above targets with:
-
-```bash
-./build_valgrind/standard_main        # Runs the 'main' function from src/standard_main.cpp
-./build_valgrind/array_gtests         # Runs the 'array' gtests
-./build_valgrind/matrix_gtests       # Runs the 'matrix' gtests
+./build/mapset                  # Runs the 'main' function from src/mapset_main.cpp
+./build/process_numbers         # Runs the 'main' function from src/process_numbers_main.cpp
+./build/compute_grades          # Runs the 'main' function from src/compute_grades_main.cpp
+./build/mapset_gtests           # Runs the 'mapset' gtests
+./build/process_numbers_gtests  # Runs the 'process_numbers' gtests
+./build/compute_grades_gtests   # Runs the 'compute_grades' gtests
 ```
 
 Once you have run the code above and it either produces the output you expected or passes
@@ -112,6 +100,5 @@ all provided tests, congratulations! You are now ready to [submit](#submission) 
 ## Submission
 
 As with previous submissions, you can either submit via `GitHub` by `git commit` and `git push` your
-changes to your private repository, and then submitting the `hw7` branch to `Gradescope`. Or, you can
-upload files directly, namely: `alloc<.hpp/.cpp>`, `array.hpp`, `int_array.hpp`,
-`matrix.hpp`, and `standard_main.cpp`.
+changes to your private repository, and then submitting the `hw8` branch to `Gradescope`. Or, you can
+upload files directly, everything listed in the `src` folder above.

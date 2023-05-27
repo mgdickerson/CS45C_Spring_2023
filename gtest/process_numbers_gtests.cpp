@@ -13,7 +13,7 @@ TEST(ProcessNumbersTests, split_odd_even) {
         EXPECT_EQ(evens_str.str(), evens);
     };
 
-    test_case("1 2 3", "1 3 ", "2\n");
-    test_case("10 2 3 7 1", "1 3 7 ", "2\n10\n");
-    test_case("", "", "");
+    test_case("1 2 3", "1 3 \n", "2\n");
+    test_case("10 2 3 7 1", "1 3 7 \n", "2\n10\n");
+    test_case("", "\n", "");
 }

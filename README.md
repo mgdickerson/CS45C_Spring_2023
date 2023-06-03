@@ -1,12 +1,12 @@
-# ICS 45C: Homework 8
+# ICS 45C: Homework 9
 
-Welcome to ICS 45C Homework 8! Instructions from this point on will assume the use of `GitHub`.
+Welcome to ICS 45C Homework 9! Instructions from this point on will assume the use of `GitHub`.
 If you are working without github, then copy the [Directory Structure](#directory-structure).
 
 ## Getting Started
 
 To get started with this homework, first you will need to `fetch` changes to your personal repository,
-checkout `hw8`, then push the `hw8` branch to your remote repository.
+checkout `hw9`, then push the `hw9` branch to your remote repository.
 
 ```bash
 # Move into your personal private repository folder:
@@ -15,41 +15,30 @@ cd <PrivateRepositoryFolder>
 # Fetch updates:
 git fetch public
 
-# Checkout hw8 from the public branch:
-git checkout hw8
+# Checkout hw9 from the public branch:
+git checkout hw9
 
 # Push the newly checked out branch to your private repository:
-git push -u origin hw8
+git push -u origin hw9
 ```
 
 ## Directory Structure
 
 If you are not using `GitHub`, and want to use our testing framework, you will need to make a folder
-named `hw8` with the following structure:
+named `hw9` with the following structure:
 
 ```bash
 .
 ├── CMakeLists.txt
 ├── CMakePresets.json
 ├── gtest
-│   ├── compute_grades_gtests.cpp
 │   ├── gtestmain.cpp
-│   ├── mapset_gtests.cpp
-│   └── process_numbers_gtests.cpp
+│   ├── map_array_gtests.cpp
+│   └── set_list_gtests.cpp
 └── src
-    ├── compute_grades.cpp
-    ├── compute_grades.hpp
-    ├── compute_grades_main.cpp
-    ├── gradebook.txt
-    ├── mapset.cpp
-    ├── mapset.hpp
+    ├── map_array.hpp
     ├── mapset_main.cpp
-    ├── process_numbers.cpp
-    ├── process_numbers.hpp
-    ├── process_numbers_main.cpp
-    ├── rand_numbers.txt
-    ├── sample_doc.txt
-    └── stopwords.txt
+    └── set_list.hpp
 ```
 
 You should copy everything from the `CMakeLists.txt` and `CMakePresets.json` files into your own,
@@ -67,31 +56,19 @@ cmake --build build
 # Build only mapset_main.cpp:
 cmake --build build --target mapset
 
-# Build only process_numbers_main.cpp:
-cmake --build build --target process_numbers
+# Build map_array gtests:
+cmake --build build --target map_array_gtests
 
-# Build only compute_grades_main.cpp:
-cmake --build build --target compute_grades
-
-# Build mapset gtests:
-cmake --build build --target mapset_gtests
-
-# Build process_numbers gtests:
-cmake --build build --target process_numbers_gtests
-
-# Build compute_grades gtests:
-cmake --build build --target compute_grades_gtests
+# Build set_list gtests:
+cmake --build build --target set_list_gtests
 ```
 
 To run the above targets after compiling them:
 
 ```bash
 ./build/mapset                  # Runs the 'main' function from src/mapset_main.cpp
-./build/process_numbers         # Runs the 'main' function from src/process_numbers_main.cpp
-./build/compute_grades          # Runs the 'main' function from src/compute_grades_main.cpp
-./build/mapset_gtests           # Runs the 'mapset' gtests
-./build/process_numbers_gtests  # Runs the 'process_numbers' gtests
-./build/compute_grades_gtests   # Runs the 'compute_grades' gtests
+./build/map_array_gtests        # Runs the 'map_array' gtests
+./build/set_list_gtests         # Runs the 'set_list' gtests
 ```
 
 Once you have run the code above and it either produces the output you expected or passes
@@ -100,5 +77,5 @@ all provided tests, congratulations! You are now ready to [submit](#submission) 
 ## Submission
 
 As with previous submissions, you can either submit via `GitHub` by `git commit` and `git push` your
-changes to your private repository, and then submitting the `hw8` branch to `Gradescope`. Or, you can
+changes to your private repository, and then submitting the `hw9` branch to `Gradescope`. Or, you can
 upload files directly, everything listed in the `src` folder above.
